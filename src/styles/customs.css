@@ -1,0 +1,135 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&&display=swap');
+
+
+:root {
+  --first-color-bg: #004173;
+  --first-color-text: #fff;
+  --color-active: green;
+  --body-font: 'Heebo', sans-serif;
+
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+.nav-gradient {
+  background: var(--first-color-bg);
+  background: linear-gradient(153deg, rgba(0, 65, 115, 1) 0%, rgba(0, 65, 115, 1) 49%, rgba(2, 0, 36, 1) 74%, rgba(0, 65, 115, 1) 99%);
+}
+
+.App-header {
+  background-color: var(--first-color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--first-color-text)
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.img-user {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  padding-left: 0 !important;
+}
+
+
+.animate-toolbar {
+  width: 100px;
+  transition: width 0.6s;
+}
+
+.animate-toolbar:hover {
+  width: 300px;
+
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(400px, minmax(400px, 2));
+  justify-content: space-between;
+  row-gap: 10px;
+  column-gap: 10px;
+  gap: 10px;
+}
+
+.div-item {
+  align-items: center;
+  border-radius: 10px;
+  border-left: solid 5px var(--first-color-bg);
+  box-shadow: 2px 3px 4px #cdcdcd;
+  justify-content: center;
+  color: '#fff' !important;
+  display: flex;
+  height: 100px;
+}
+
+.div-item h1 {
+  color: #343333
+}
+
+.div-item:hover {
+  box-shadow: 5px 5px 10px #cdcdcd;
+  cursor: pointer;
+}
+
+/* centrar DIV o CONTENIDO */
+
+.content-div-central {
+  position: relative;
+
+
+}
+
+.central-div {
+  border: 1px solid #cdcdcd;
+  border-radius: 25px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  top: 50%;
+  left: 50%;
+  margin: 100px;
+  padding: 5em;
+
+
+}
+
+.border-color-card {
+  border-left: 4px solid var(--first-color-bg);
+  box-shadow: 5px 10px 40px #cdcdcd;
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

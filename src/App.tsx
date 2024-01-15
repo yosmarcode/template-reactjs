@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy } from 'react'
+import './styles/customs.css'
+import 'animate.css'
 
-function App() {
+import { typePrivateRouter, typePublicRouter } from './router/TypeRouter'
+import Loadable from './core/components/Loaders/Loadable'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { ProtectedRoute } from './router/PrivateRouter'
+import userStore from './core/guards/UserLocalStorage'
+import NotFound from './core/components/NotFound/NotFound'
+import LayoutPage from './core/layout/LayoutPage'
+
+function App () {
+  const LoginPage = Loadable(lazy(() => import('./auth/PagesLogin'))) // Login
+  const PageDashboard = Loadable(lazy(() => import('./pages/PageDasboard/PagesDashboard'))) // Page Dashboard with
+  const PageUser = Loadable(lazy(() => import('./pages/PagesUser/PageUser'))) // User
+  const PageUUserLogin = Loadable(lazy(() => import('./pages/PageUserLogin/PageUserLogin'))) // User
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+
+        <Route index element={<Navigate to={typePrivateRouter.APP} />} />
+        <Route path='/' element={<Navigate to={typePrivateRouter.APP} />} />
+        <Route path={typePublicRouter.LOGIN} element={<LoginPage />} />
+        <Route element={<LayoutPage />}>
+          <Route element={<ProtectedRoute isAllowed={userStore} />}>
+            <Route path={typePrivateRouter.APP} element={<PageDashboard />} />
+            <Route path={typePrivateRouter.USER} element={<PageUser />} />
+            <Route path={typePrivateRouter.USER_LOGIN} element={<PageUUserLogin />} />
+          </Route>
+        </Route>
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
